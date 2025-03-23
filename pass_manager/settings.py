@@ -48,9 +48,14 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
+    'public',
     'accounts',
     'dashboard',
-    'public',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
+    "django_otp.plugins.otp_email",
+    "two_factor",
+
 ]
 
 MIDDLEWARE = [
