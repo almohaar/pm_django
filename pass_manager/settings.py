@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zyg(8uo*^0eaof)8#i2nm@!a*yyy%f+95312+pkx8ubrc9bbxe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pm-django.onrender.com']
+ALLOWED_HOSTS = ['pm-django.onrender.com', '127.0.0.1']
 
 # for django-tailwind
 INTERNAL_IPS = [
@@ -55,18 +55,19 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     "django_otp.plugins.otp_email",
     "two_factor",
-
-]
+    "whitenoise.runserver_nostatic",
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    
 ]
 
 ROOT_URLCONF = 'pass_manager.urls'
@@ -118,6 +119,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # Internationalization
